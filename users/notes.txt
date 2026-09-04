@@ -1,0 +1,8 @@
+- All Work Off Patient
+1. Auto Patient Profile Create
+   and all work about patient  #Done
+
+2. Admin Can Update, Retrieve , Delete Patient
+    and patient profile will be automatic created
+
+3. Normal user can retrive and update his own patient profile
