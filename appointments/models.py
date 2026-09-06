@@ -29,5 +29,5 @@ class Appointment(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.status
+        return f'Patient: {self.patient.user.first_name}; Doctor: {self.doctor.user.first_name}; Status: {self.status}'
 

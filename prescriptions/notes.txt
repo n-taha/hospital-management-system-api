@@ -1,0 +1,7 @@
+1. TODO: Permission Layer (Patient)
+				- Patient Can Access His Own Prescription (GET Only)
+2. TODO: Permission Layer (Admin):
+				- Admin Can Do Everything (GET, POST, PATCH, PUT, DELETE)
+3. TODO: Permission Layer( Doctor)
+				-  Doctor Can Access Only His Patient's Prescription
+				-  Doctor Can Edit, Create, delete His Patient's Prescription

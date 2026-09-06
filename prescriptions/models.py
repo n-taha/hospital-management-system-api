@@ -12,7 +12,7 @@ class Prescription(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.PROTECT, related_name="prescriptions")
     diagnosis = models.TextField()
     notes = models.TextField()
-    follow_up_date = models.DateTimeField(auto_now_add=True)
+    follow_up_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
