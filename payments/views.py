@@ -23,8 +23,10 @@ class InvoiceViewSets(ModelViewSet):
         if self.request.user.is_superuser or self.request.user.is_staff:
             return Invoice.objects.all()
 
-        patient = Patient.objects.get(user=self.request.user)
-        return Invoice.objects.filter(patient=patient)
+        patient = Patient.objects.filter(user=self.request.user).first()
+        if patient:
+            return Invoice.objects.filter(patient=patient)
+        return Invoice.objects.none()
 
 
 class InvoiceItemViewSets(ModelViewSet):
@@ -40,7 +42,7 @@ class InvoiceItemViewSets(ModelViewSet):
         if not patient:
             return InvoiceItem.objects.none()
 
-        invoice = Invoice.object.filter(
+        invoice = Invoice.objects.filter(
             patient=patient, status=Invoice.Status.DRAFT
         ).first()
         if not invoice:

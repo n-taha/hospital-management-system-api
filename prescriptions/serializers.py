@@ -1,12 +1,9 @@
-from dataclasses import field
 from django.forms import ValidationError
-from django.utils.autoreload import raise_last_exception
 from rest_framework import serializers
-
-import appointments
 from appointments.models import Appointment
-from prescriptions.models import Prescription
+from prescriptions.models import Prescription, PrescriptionItem
 from users.models import Doctor
+
 
 
 # This Is For Admin Only
@@ -142,3 +139,27 @@ class PrescriptionSerailzerForPatient(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+class PrescriptionItemSerializerForAdmin(serializers.ModelSerializer):
+    class Meta:
+        model = PrescriptionItem
+        fields = ['id', 'prescription', 'medicine', 'dosages', 'frequency', 'instructions', 'duration']
+
+class PrescriptionItemSerializerForDoctor(serializers.ModelSerializer):
+    class Meta:
+        model = PrescriptionItem
+        fields = ['id', 'prescription', 'medicine', 'dosages', 'frequency', 'instructions', 'duration']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        request = self.context["request"]
+        if request and request.user.is_authenticated:
+            self.fields["prescription"].queryset = Prescription.objects.filter(doctor=request.user.doctors)
+
+
+class PrescriptionItemSerializerForPatient(serializers.ModelSerializer):
+    class Meta:
+        model = PrescriptionItem
+        fields = '__all__'
+        read_only_fields = ['id', 'prescription', 'medicine', 'dosages', 'frequency', 'instructions', 'duration']

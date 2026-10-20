@@ -5,3 +5,15 @@
 3. TODO: Permission Layer( Doctor)
 				-  Doctor Can Access Only His Patient's Prescription
 				-  Doctor Can Edit, Create, delete His Patient's Prescription
+
+
+// PrescriptionItem
+TODO: Permission Layer:
+			1. Admin Can Access All PrescriptionItem.
+			2. Admin Can Create, delete, update,  PrescriptionItem.
+			3. Doctor Can Create , Update, delete Only His Patient's Prescription's  PrescriptionItem
+			4. Patient Can Read Only His PrescriptionItem
+
+			We have to make:
+			1. Serializer : -> EverySerializer Are Same But Different In Permission
+			

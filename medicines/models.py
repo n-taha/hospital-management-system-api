@@ -45,6 +45,9 @@ class Medicine(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.name} - {self.generic_name}'
+
 
 class PharmacyStock(models.Model):
     medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE, related_name='stocks')

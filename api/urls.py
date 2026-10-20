@@ -1,10 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from prescriptions.views import PrescriptionViewSets
+from django.db import router
+from prescriptions.views import PrescriptionViewSets, PrescriptionItemViewSets
 from users import views
 from departments.views import DepartmentViewSets
 from appointments.views import AppointmentViewSets
 from payments.views import InvoiceItemViewSets, InvoiceViewSets, ManualPaymentviewSets
+
 
 router = DefaultRouter()
 
@@ -17,6 +19,7 @@ router.register('invoices', InvoiceViewSets, basename='invoices')
 router.register('invoice-items', InvoiceItemViewSets, basename='items')
 router.register('manual-payment', ManualPaymentviewSets, basename='manual-payments')
 router.register('prescriptions', PrescriptionViewSets, basename='prescriptions')
+router.register('prescription-items', PrescriptionItemViewSets, basename='prescription-items')
 
 urlpatterns = [
     path("", include(router.urls))
